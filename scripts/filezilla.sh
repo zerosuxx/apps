@@ -9,6 +9,7 @@ pattern='href="(.*cdn.*macos[^"]+)"'
 for word in $contents; do
   if [[ $word =~ $pattern ]]; then
     url="${BASH_REMATCH[1]}"
+    echo "$url"
     curl -O "$url"
   fi 
 done

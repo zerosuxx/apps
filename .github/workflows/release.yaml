@@ -14,11 +14,11 @@ jobs:
       - name: Create output variables
         id: vars
         run: |
-          echo "app_name=$(echo '${{ github.event.ref }}' | cut -d'-' -f1)" >> $GITHUB_OUTPUT
-          echo "app_version=$(echo '${{ github.event.ref }}' | cut -d'-' -f2)" >> $GITHUB_OUTPUT
+          echo "APP_NAME=$(echo '${{ github.event.ref }}' | cut -d'-' -f1)" >> "$GITHUB_ENV"
+          echo "APP_VERSION=$(echo '${{ github.event.ref }}' | cut -d'-' -f2)" >> "$GITHUB_ENV"
 
       - name: Download artifacts
-        run: "bash scripts/${{ vars.app_name }}.sh ${{ vars.app_version }}"
+        run: "bash scripts/${{ env.APP_NAME }}.sh ${{ env.APP_VERSION }}"
         
       - name: Generate sha256sums
         run: "bash scripts/generate-sha256.sh dist/"
