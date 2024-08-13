@@ -14,8 +14,8 @@ jobs:
       - name: Create output variables
         id: vars
         run: |
-          echo "APP_NAME=$(echo '${{ github.event.ref }}' | cut -d'-' -f1)" >> "$GITHUB_ENV"
-          echo "APP_VERSION=$(echo '${{ github.event.ref }}' | cut -d'-' -f2)" >> "$GITHUB_ENV"
+          echo "APP_NAME=$(echo '${{ github.ref_name }}' | cut -d'-' -f1)" >> "$GITHUB_ENV"
+          echo "APP_VERSION=$(echo '${{ github.ref_name }}' | cut -d'-' -f2)" >> "$GITHUB_ENV"
 
       - name: Download artifacts
         run: "bash scripts/${{ env.APP_NAME }}.sh ${{ env.APP_VERSION }}"
